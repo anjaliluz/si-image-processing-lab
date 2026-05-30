@@ -1,7 +1,6 @@
 from kedro.pipeline import Pipeline, node
 from .nodes import process_image
 
-
 def create_pipeline(**kwargs) -> Pipeline:
     return Pipeline(
         [
@@ -12,10 +11,10 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "params:output_path",
                     "params:rotation_angle",
                     "params:filter_name",
-                    "params:watermark_text",
+                    "params:watermark_text"
                 ],
-                outputs="processed_image_path",
-                name="image_processing_node",
+                outputs=None,
+                name="process_image_node",
             )
         ]
     )
