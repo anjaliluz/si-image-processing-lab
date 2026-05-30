@@ -1,0 +1,27 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar entorno Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 3. Instalar Poetry
+        run: pip install poetry
+
+      - name: 4. Instalar Dependencias del Proyecto
+        run: poetry install
+
+      - name: 5. Ejecutar Suite de Pruebas Unitarias
+        run: poetry run pytest
